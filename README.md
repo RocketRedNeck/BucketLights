@@ -4,6 +4,14 @@ A simple Arduino project to coordinate multiple NeoPixel lights with various pat
 Just hook up the strips, assign a meaning to them, hook up the Ardiuno to a serial port and
 send the commands.
 
+The original concept was used on the Bit Buckets' 2017 Robot, Marvin, to play the FIRST Robotics
+Competition (FRC) game, Steamworks. The lights were coordinated to the states of four (4) subsystems
+and their associated states.
+
+The hookup is just a matter of editing the BucketLights.ino file:
+    1) LightingObjects enumeration for pin assignments
+    2) myStrips array for the NeoPixel strip instances
+
 Use "?" for help:
 
     String format is simple: 'NFCnbbbpppp'   
