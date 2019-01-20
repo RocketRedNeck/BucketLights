@@ -69,7 +69,7 @@ protected:
         long long period_usec;
         long long nextScheduled_usec;
 
-        StripStates()
+        StripState()
         {
           function = '0';   // Off
           color = BLACK;
@@ -456,5 +456,3 @@ public:
 
 
 #endif
-
-

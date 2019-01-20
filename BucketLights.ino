@@ -87,5 +87,3 @@ void loop()
   myLights.process();
 
 }
-
-
