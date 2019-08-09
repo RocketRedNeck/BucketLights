@@ -49,18 +49,14 @@
 
 enum LightingObjects  // Pin assignments
 {
-    DRIVE_SUBSYSTEM = 3,
-    GEAR_SUBSYSTEM  = 4,
-    BALL_SUBSYSTEM  = 5,
-    CLIMB_SUBSYSTEM = 6  
+    FRONT_CAMERA = 5,
+    BACK_CAMERA  = 6
 };
 
 Adafruit_NeoPixel myStrips[] =
 {
-  Adafruit_NeoPixel(16, DRIVE_SUBSYSTEM, NEO_GRB + NEO_KHZ800),
-  Adafruit_NeoPixel(16, GEAR_SUBSYSTEM,  NEO_GRB + NEO_KHZ800),
-  Adafruit_NeoPixel(16, BALL_SUBSYSTEM,  NEO_GRB + NEO_KHZ800),
-  Adafruit_NeoPixel(16, CLIMB_SUBSYSTEM, NEO_GRB + NEO_KHZ800)
+  Adafruit_NeoPixel(16, FRONT_CAMERA, NEO_GRB + NEO_KHZ800),
+  Adafruit_NeoPixel(16, BACK_CAMERA,  NEO_GRB + NEO_KHZ800),
 };
 
 BucketLight myLights(myStrips, LENGTH(myStrips));
@@ -69,13 +65,19 @@ BucketLight myLights(myStrips, LENGTH(myStrips));
 
 void setup()
 {
-  Serial.begin(38400);
+  Serial.begin(115200);
   Serial.println("BucketLights Starting...");
 
   myLights.begin();
+
+  Serial.println("Started. Type ? for help.");
 }
 
 String command;
+MicroTimer timer;
+const long long STEP_USEC = 1000000ul;
+long long next_usec = STEP_USEC;
+long next_sec = 0;
 void loop()
 {
   if (Serial.available() > 0)
@@ -85,5 +87,14 @@ void loop()
   }
 
   myLights.process();
+
+//  if (timer.read() > next_usec)
+//  {
+//    Serial.print("Time = ");
+//    next_sec = (long)(next_usec / STEP_USEC);
+//    Serial.println(next_sec);
+//    next_usec += STEP_USEC;
+//  }
+  
 
 }
